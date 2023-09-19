@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 using namespace std;
 
 // definicao de tipo
@@ -20,6 +21,7 @@ void exibirReverso();
 void inserirElemento();
 void excluirPrimeiroElemento();
 void excluirUltimoElemento();
+void ExibePrimeiroEultimo();
 
 //--------------------------
 
@@ -33,7 +35,7 @@ void menu()
 {
 	int op = 0;
 	while (op != 8) {
-		system("cls"); // somente no windows
+		system("clear"); // somente no windows
 		cout << "Menu Lista Ligada";
 		cout << endl << endl;
 		cout << "1 - Inicializar Lista \n";
@@ -66,11 +68,12 @@ void menu()
 			break;
 		case 8:
 			return;
+		case 9: ExibePrimeiroEultimo();
 		default:
 			break;
 		}
 
-		system("pause"); // somente no windows
+		getchar();
 	}
 }
 
@@ -88,6 +91,7 @@ void inicializar()
 	primeiro = NULL;
 	ultimo = NULL;
 	cout << "Lista inicializada \n";
+	getchar();
 
 }
 
@@ -100,6 +104,7 @@ void exibirQuantidadeElementos() {
 		aux = aux->prox;
 	}
 	cout << "Quantidade de elementos: " << nElementos << endl;
+	getchar();
 
 }
 
@@ -117,6 +122,7 @@ void exibirElementos()
 			aux = aux->prox;
 		}
 	}
+	getchar();
 }
 
 void inserirElemento()
@@ -144,27 +150,55 @@ void inserirElemento()
 		ultimo->prox = novo;
 		ultimo = novo;
 	}
+	cout<<"Valor Inserido";
+	getchar();
 }
 
 
 // funções a serem implementadas no exericio
 void exibirReverso()
 {
-
+    if (ultimo == NULL) {
+		cout << "Lista vazia \n";
+		return;
+	}
+	else {
+		cout << "Elementos ao contrario: \n";
+		NO* aux = ultimo;
+		while (aux != NULL) {
+			cout << aux->valor << endl;
+			aux = aux->ant;
+		}
+	}
+	getchar();
 }
 
 void excluirPrimeiroElemento()
 {
-
+    NO* aux=primeiro;
+    if(primeiro==NULL){
+        cout<<"Lista vazia.";
+    }
+    else{
+        primeiro=primeiro->prox;
+        primeiro->ant=NULL;
+        free(aux);
+        cout<<"primeiro valor deletado";
+    }
+    getchar();
 }
 
 void excluirUltimoElemento()
 {
-
+    NO* aux=ultimo;
+    if(ultimo==NULL){
+        cout<<"Lista vazia.";
+    }
+    else{
+        ultimo=ultimo->ant;
+        ultimo->prox=NULL;
+        free(aux);
+        cout<<"ultimo valor deletado";
+    }
+    getchar();
 }
-
-
-
-
-
-
